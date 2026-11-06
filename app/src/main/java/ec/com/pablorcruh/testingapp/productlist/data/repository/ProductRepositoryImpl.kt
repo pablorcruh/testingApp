@@ -1,11 +1,14 @@
 package ec.com.pablorcruh.testingapp.productlist.data.repository
 
+import ec.com.pablorcruh.testingapp.productlist.data.remote.RemoteDataSource
 import ec.com.pablorcruh.testingapp.productlist.domain.model.Product
 import ec.com.pablorcruh.testingapp.productlist.domain.repository.ProductRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class ProductRepositoryImpl @Inject constructor(): ProductRepository {
+class ProductRepositoryImpl @Inject constructor(
+    val remoteDataSource: RemoteDataSource
+): ProductRepository {
     override fun getProducts(): Flow<List<Product>> {
         TODO("Not yet implemented")
     }
@@ -15,6 +18,6 @@ class ProductRepositoryImpl @Inject constructor(): ProductRepository {
     }
 
     override suspend fun refreshProduct() {
-
+        remoteDataSource.getProducts()
     }
 }

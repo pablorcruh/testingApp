@@ -11,6 +11,11 @@ android {
     namespace = "ec.com.pablorcruh.testingapp"
     compileSdk {
         version = release(37)
+        testOptions {
+            unitTests {
+                isIncludeAndroidResources = true
+            }
+        }
     }
 
     defaultConfig {
